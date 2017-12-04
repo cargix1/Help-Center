@@ -1,0 +1,96 @@
+<main class="main-sidebar" role="main">
+  <div id="sidebar" class="sidebar-panel">
+    <ul class="sidebar">
+      <li class="sidebar-item sidebar-home open">
+        <a href="{{page_path 'help_center'}}" class="sidebar-item-title">
+          Home
+        </a>
+      </li>
+      <li class="sidebar-section" v-for='category in categories' :data-id='category.id'>
+        <h4 class="sidebar-category-title" v-cloak>{[{category.name}]}</h4>
+        <ul>
+          <li :class="['sidebar-item', isOpen(section.id)]" v-for='section in category.sections' :data-id='section.id'>
+            <span class="sidebar-item-title" @click='setActiveSection(section.id)'>
+              {[{section.name}]}
+            </span>
+            <ul v-if='section.id === activeSection'>
+              <li :class="['sidebar-item', isCurrent(article.id)]" v-for='article in section.articles'>
+                <a :href='article.html_url' class="sidebar-item-link">
+                  {[{article.title}]}
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  
+
+<div class="container content">
+  <nav class="my-activities-nav collapsible-nav">
+  <ul class="collapsible-nav-list container">
+    {{#if help_center.request_management_enabled}}
+      <li>{{link 'requests'}}</li>
+    {{/if}}
+    <li aria-selected=true>{{t 'contributions'}}</li>
+    <li>{{link 'subscriptions'}}</li>
+  </ul>
+</nav>
+  <header class="my-activities-header">
+    <h1>{{t 'contributions'}}</h1>
+    <nav class="my-activities-sub-nav collapsible-nav">
+      <ul class="collapsible-nav-list">
+        {{#each filters}}
+          {{#if selected}}
+            <li aria-selected=true>{{name}}</li>
+          {{else}}
+            <li>
+              <a href="{{url}}">{{name}}</a>
+            </li>
+          {{/if}}
+        {{/each}}
+      </ul>
+    </nav>
+  </header>
+
+
+  <div class="requests">
+    {{#if contributions}}
+      <table class="table my-activities-table contributions-table">
+        <thead>
+          <tr>
+            <th>{{t 'title'}}</th>
+            <th>{{t 'type'}}</th>
+            <th>{{t 'vote_sum'}}</th>
+            <th>{{t 'last_activity'}}</th>
+            <th>{{t 'created'}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each contributions}}
+            <tr>
+              <td>
+                <a href="{{url}}" class="striped-list-title" title="{{title}}">
+                  {{excerpt title characters=60}}
+                </a>
+              </td>
+              <td>{{type}}</td>
+              <td>{{vote_sum}}</td>
+              <td>{{date last_activity_at}}</td>
+              <td>{{date created_at}}</td>
+            </tr>
+          {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+      <p class="no-activities">{{t 'no_contributions'}}</p>
+    {{/if}}
+  </div>
+
+  {{pagination}}
+
+  </div>
+
+ <script>sidebar.$mount("main");</script>
+</main>

@@ -1,0 +1,97 @@
+<main class="main-sidebar" role="main">
+<div id="sidebar" class="sidebar-panel">
+  <ul class="sidebar">
+    <li class="sidebar-item sidebar-home open">
+      <a href="{{page_path 'help_center'}}" class="sidebar-item-title">
+        Home
+      </a>
+    </li>
+    <li class="sidebar-section" v-for='category in categories' :data-id='category.id'>
+      <h4 class="sidebar-category-title" v-cloak>{[{category.name}]}</h4>
+      <ul>
+        <li :class="['sidebar-item', isOpen(section.id)]" v-for='section in category.sections' :data-id='section.id'>
+          <span class="sidebar-item-title" @click='setActiveSection(section.id)'>
+            {[{section.name}]}
+          </span>
+          <ul v-if='section.id === activeSection'>
+            <li :class="['sidebar-item', isCurrent(article.id)]" v-for='article in section.articles'>
+              <a :href='article.html_url' class="sidebar-item-link">
+                {[{article.title}]}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+<div class="container content">
+  
+  <div class="community-image">
+  	<img src="{{ asset 'logo5.png' }}">
+  </div>
+
+  <p class="home-desc"></p>
+
+  <section class="section knowledge-base">
+    <section class="categories blocks">
+      <ul class="blocks-list">
+        <li class="blocks-item">
+          <a href='https://storepickup.zendesk.com/hc/en-us/articles/115000909685-Setup-Guide' class="blocks-item-link">
+            <h3 class="blocks-item-title">Getting started</h3>
+<!--             <p class="blocks-item-description"></p> -->
+          </a>
+        </li>
+        <li class="blocks-item">
+          <a href='https://storepickup.zendesk.com/hc/en-us/articles/115003250745' class="blocks-item-link">
+            <h3 class="blocks-item-title">Store Pickup</h3>
+<!--             <p class="blocks-item-description"></p> -->
+          </a>
+        </li>
+        <li class="blocks-item">
+          <a href='https://storepickup.zendesk.com/hc/en-us/articles/115002649269-Enable-deliveries-for-specific-vendors' class="blocks-item-link">
+            <h3 class="blocks-item-title">Local Delivery</h3>
+<!--             <p class="blocks-item-description"></p> -->
+          </a>
+        </li>
+        <li class="blocks-item">
+          <a href='https://storepickup.zendesk.com/hc/en-us/articles/115004271505-Checkout-Languages-Translations' class="blocks-item-link">
+            <h3 class="blocks-item-title">Design</h3>
+<!--             <p class="blocks-item-description"></p> -->
+          </a>
+        </li>
+        <li class="blocks-item">
+          <a href='https://storepickup.zendesk.com/hc/en-us/articles/115002323449-How-do-I-get-the-app-to-work-on-my-new-theme-' class="blocks-item-link">
+            <h3 class="blocks-item-title">FAQ</h3>
+<!--             <p class="blocks-item-description"></p> -->
+          </a>
+        </li>
+        <li class="blocks-item">
+          <a href='https://storepickup.zendesk.com/hc/en-us/articles/211847149-Release-notes' class="blocks-item-link">
+            <h3 class="blocks-item-title">Advanced</h3>
+<!--             <p class="blocks-item-description"></p> -->
+          </a>
+        </li>
+        <li class="blocks-item">
+          <a href='https://storepickup.zendesk.com/hc/en-us/articles/115003737469-Parcelify' class="blocks-item-link">
+            <h3 class="blocks-item-title">Integrations</h3>
+<!--             <p class="blocks-item-description"></p> -->
+          </a>
+        </li>
+      </ul>
+      {{pagination}}
+    </section>
+  </section>
+
+  <section class="section support">
+    <h3>Still have questions?</h3>
+    <p>We're happy to help with whatever questions you have! You can reach out to us by chat or <a href="{{page_path 'new_request'}}">send us an email</a>!</p>
+  </section>
+
+</div>
+
+
+<script>sidebar.$mount("#sidebar");</script>
+</main>
