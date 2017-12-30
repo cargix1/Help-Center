@@ -30,8 +30,18 @@ All code examples should be contained within a <textarea class="codePreview"></t
 
 You should set the rows parameter to the number of lines that the code takes up. The max should be 15 lines. Any longer then that we let the user scroll.
 
-### Puncations
+### Punctuation
 Only use fullstops when multiple sentances are required. 
 
 Lists should not end in fullstop unless multiple sentences are used.
 
+### Italics
+Never use italics instead. Instead you can use either of the following:
+
+```
+<em>My subdued text</em>
+
+<span class="subdued">My subdued text</span>
+<div class="subdued">My subdued text</div>
+<p class="subdued">My subdued text</p>
+```
