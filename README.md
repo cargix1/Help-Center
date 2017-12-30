@@ -45,3 +45,8 @@ Never use italics instead. Instead you can use either of the following:
 <div class="subdued">My subdued text</div>
 <p class="subdued">My subdued text</p>
 ```
+
+### Annotations
+Only use arrows for pointing out specific actions
+The arrow should be the default red
+The arrow should always be at 90 degree angle to the content
