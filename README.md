@@ -18,3 +18,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur quis feugiat 
 3. Replace the loren ipsum with the content for the banner
 
 4. The `data-status` can either be "info" or "warning"
+
+
+### Code examples 
+
+All code examples should be contained within a <textarea class="codePreview"></textarea>
+
+```
+<textarea class="codePreview" rows="1">{% include 'storepickup' %}</textarea>
+```
+
+You should set the rows parameter to the number of lines that the code takes up. The max should be 15 lines. Any longer then that we let the user scroll.
